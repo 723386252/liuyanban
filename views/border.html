@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>首页</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+  <script src="/assets/jquery-3.5.1.min.js"></script>
+  <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="row" style="height: 100px;position: relative;">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="top: 50px;"><h1>首页</h1>
+      <!-- <button class="btn btn-success" style="position: relative;top: 20px;" onclick="release()">发表留言</button> -->
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <button class="btn btn-success" style="position: relative;top: 30px;" onclick="release()">发表留言</button>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row" style="top:50px;position:relative">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <ul class="list-group">
+      {{each msg}}
+      <li class="list-group-item">
+        <div style="float: left;">{{$value.user}}说:{{$value.content}}</div>
+        <div style="float: right;">{{$value.time}}</div>
+      </li>
+      {{/each}}
+    </ul>
+  <div class="col-sm-4"></div>
+</div>
+<script>
+  function release() {
+    window.location.href='/release'
+  }
+  let button=document.querySelector('button')
+  button.addEventListener('touchend',()=>{
+    release()
+  })
+</script>
+</body>
+</html>
