@@ -22,11 +22,11 @@ app.use('/module/',express.static('./node_modules'))
 app.use('/assets/',express.static('./assets'))
  
 
-const server = app.listen(80 ,()=>{
+const server = app.listen(8080 ,()=>{
   console.log("启动成功");
 })
 
-let msg=[]
+// let msg=[]
 app.engine('html',require('express-art-template'))
 
 server.setTimeout(0)
