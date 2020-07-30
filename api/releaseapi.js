@@ -1,25 +1,15 @@
 const connection = require('./mysql')
-const express = require('express')
-const router = express.Router()
 
-
-
-router.get('/releaseapi',(req,res)=>{
-    // console.log(req.session.userid);
-  try{
-      if(req.session.userid){
-        //   console.log(req.session.userid);
-    connection.query(`insert into message(msgcontent,msguserid,msgtime) values ('${req.query.content}','${req.session.userid}',now())`,(error,results,fields)=>{
-        console.log(error);
-        res.redirect('/')
-    })
+let api = {
+blogsubmit : function(req,success){
+    connection.query(`insert into message(msgcontent,msguserid,msgtime) values ('${req.query.content}','${req.session.userid}',now())`,(error,results)=>{
+        if(error){
+            console.log(error);
+        }
+        else{
+            success(results)
+        }
+})}
 }
-    else{
-        res.redirect('/login')
-    }
-  }catch{
-      res.redirect('/login')
-  }
-})
 
-module.exports = router
+module.exports = api

@@ -20,7 +20,7 @@
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
       <div class="formbody">
-        <form action="/registerapi">
+        <form action="/registersubmit" method="POST" enctype="multipart/form-data"> 
             <div class="form-group" style="margin: 20px 10px;">
               <label>登录名:</label>
               <input type="text" class="form-control" name="userid">
@@ -32,6 +32,10 @@
             <div class="form-group" style="margin: 20px 10px;">
               <label>密码:</label>
               <input type="password" class="form-control" name="password">
+            </div>
+            <div class="form-group" style="margin: 20px 10px;">
+              <label>头像:</label>
+              <input type="file" class="form-control" name="portrait" id="upload" value=""/>
             </div>
             <button type="submit" class="btn btn-success" onclick="btnclick()">注册</button>
           </form>
