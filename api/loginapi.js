@@ -14,8 +14,8 @@ else{
 )
 },
 
-registersubmit: function (userid , username ,password ,portrait,success){
-connection.query(`INSERT INTO users(userid,username,password ,portrait) VALUES ('${userid}','${username}','${password}','${portrait}')`,(error,results)=>{
+registersubmit: function (userid , username ,password , sex , portrait,success){
+connection.query(`INSERT INTO users(userid,username,password ,sex,portrait) VALUES ('${userid}','${username}','${password}','${sex}','${portrait}')`,(error,results)=>{
 if(error){
     console.log(error);
 }

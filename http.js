@@ -5,7 +5,8 @@ const login = require('./router/login')
 const loginapi = require('./api/loginapi')
 const releaseapi = require('./api/releaseapi')
 const bodyParser= require('body-parser')
-const multer =require('multer')
+// const upload = require('./utils/multer')
+
 
 const app = express()
 // app.set('trust proxy', 1) // trust first proxy
@@ -14,15 +15,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-let upload = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    if(req.url='/reqgisterapi'){
-      cb(null,'./assets/imgs')
-    }
-  }
-})
 
 
+// app.use(upload.any())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(index)
