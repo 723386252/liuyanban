@@ -5,7 +5,6 @@ const upload = require('../utils/multer')
 
 router.get('/register',(req,res)=>{
     // console.log(req.session.login);
-    // console.log('66');
     res.render('register.html')
 })
 
@@ -15,8 +14,8 @@ router.get('/login',(req,res)=>{
 })
 
 router.post('/registersubmit',upload.single('portrait'),(req,res)=>{
-    console.log(req.file);
-    console.log(req.body);
+    // console.log(req.file);
+    // console.log(req.body);
     let {userid , username , password , sex } = req.body
     if(req.file){
     portrait = `${req.file.destination.split('.')[1]}/${req.file.filename}`
@@ -28,25 +27,24 @@ router.post('/registersubmit',upload.single('portrait'),(req,res)=>{
     portrait = '/assets/imgs/potrait/default_F.jpg'
     }
     api.registersubmit(userid , username ,password , sex , portrait , results=>{
-        res.redirect('/')
+        req.session.user = {username,userid}
+        // res.redirect('/?tab = all')
     })
-    // let {userid,username,password} = req.query
-    // api.loginsubmit(userid , username ,password ,portrait,results=>{
-    //     req.session.username = username
-    //     res.redirect('/')
-    // })
+
     
 })
 
 router.get('/loginsubmit',(req,res)=>{
-    let {userid,username,password} = req.query
-    api.registersubmit(userid , username , password , results=>{
+    // console.log(req.query);
+    let {userid,password} = req.query
+    api.loginsubmit(userid , password, results =>{
+        // console.log(results);
         if(results.length===0){
             res.redirect('/login')
         }
         else{
-            req.session.username = username
-            res.redirect('/')
+            req.session.user = {username:results[0].username,userid}
+            res.redirect('/?tab=all')
         }
     })
     

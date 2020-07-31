@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const api = require('../api/releaseapi')
+const api = require('../api/blogapi')
+const upload = require('../utils/multer')
 
 router.get('/',(req,res)=>{
     // console.log(req.session.userid);
@@ -8,10 +9,11 @@ router.get('/',(req,res)=>{
 }
 )
 
+
 router.get('/release',(req,res)=>{
     // console.log(req.session.userid);
     try {
-         if(req.session.userid){
+         if(req.session && req.session.user){
     res.render('release.html')}
     else{
         res.redirect('/login')
@@ -22,14 +24,21 @@ router.get('/release',(req,res)=>{
    
 })
 
-router.get('/releaseapi',(req,res)=>{
-    // console.log(req.session.userid);
-    api.blogsubmit(req,()=>{
-        if(req.session && req.session.username){
-            res.redirect('/')
-        }
+router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
+    console.log(req.body);
+    console.log(req.files);
+    if(req.session && req.session.user){
+    //    api.blogsubmit(req.body,results=>{
+    //        res.send('提交成功')
+    //        res.redirect('/?tab = all')
+    //    })
+    }
         else{
             res.redirect('/login')
-    }})})
+        }
+        
+    }
+   
+    )
 
     module.exports = router

@@ -7,19 +7,6 @@
     box-shadow: 1px 1px 5px rgba(68,68,68,0.5);
     background-color: #eaeaea;
 }
-.upload{
-    position: relative;
-    height: 35px;
-    width: 35px;
-    background-image: url('/assets/imgs/icons/upload_default.png');
-    background-size: 35px 35px;
-    float: left;
-    margin-left: 15px;
-    cursor: pointer;
-}
-.upload:hover{
-    background-image: url('/assets/imgs/icons/upload_hover.png');
-}
 body{
     margin: 0;
     background-color: #e1e1e1;
@@ -68,10 +55,3 @@ body{
     color: white;
     text-decoration: none;
   }
-  .clearfix:after{
-    content:"";
-    display:block;
-    height:0;
-    clear:left;
-    visibility:hidden;
-}

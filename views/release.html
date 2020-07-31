@@ -9,25 +9,53 @@
   <script src="/assets/jquery-3.5.1.min.js"></script>
   <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/release.css">
+  <script src="/assets/js/release.js"></script>
 </head>
 <body>
-    <div class="row" style="height: 100px;position: relative;">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4" style="top: 50px;"><h1>发表留言</h1>
+  <div class="navigator">
+    <div class="icon"></div>
+    <input type="text" name="search" id="search">
+
+    <a class="loginbtn" href='/register'>注册</a>
+    <a class="loginbtn" href='/login'>登录</a>
+  </div>
+    <div class="row" style="height: 70px;position: relative;">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="top: 50px;"><h1>发布话题</h1>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-3"></div>
     </div>
     <div class="row" style="height: 50px;position: relative;">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4" style="top: 50px;">
-            <form action="/releaseapi">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="top: 50px;">
+          <div class="formbody">
+            <form action="/blogsubmit" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="sel1">选择板块:</label>
+                <select class="form-control" id="sel1" name="type">
+                  <option>请选择</option>
+                  <option value="share">分享</option>
+                  <option value="ask">问答</option>
+                  <option value="job">招聘</option>
+                  <option value="dev">客户端测试</option>
+                </select>
+              </div>
                 <div class="form-group">
-                  <textarea class="form-control" style="height: 150px;" placeholder="请输入你的留言" name="content"></textarea>
+                  <input type="text" class="form-control" name="title" placeholder="请输入标题" style="margin-bottom: 20px;">
+                  <textarea class="form-control" style="height: 150px;" placeholder="请输入内容" name="content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">留言</button>
+                <div class="form-group clearfix" style="margin: 20px 10px;">
+                  <label style="float: left;">图片:</label>
+                  <div class="upload" onclick="submitimgs()">
+                  </div>
+                  <input type="file" class="form-control" name="imgs" id="imgs" value="" style="display: none;" multiple/>
+                </div>
+                <button type="submit" class="btn btn-success">发布</button>
               </form>
+            </div>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-3"></div>
     </div>
 </body>
 </html>

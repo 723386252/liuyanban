@@ -8,17 +8,27 @@
     <script src="/assets/jquery-3.5.1.min.js"></script>
     <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <script src="../assets/js/login.js"></script>
 </head>
 <body>
+  <div class="navigator">
+    <div class="icon"></div>
+    <input type="text" name="search" id="search">
+
+    <a class="loginbtn" href='/register'>注册</a>
+    <a class="loginbtn" href='/login'>登录</a>
+  </div>
     <div class="row" style="height: 50px;position: relative;top: 50px;">
     <div class="col-sm-4"></div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><h1>用户登录</h1></div>
     <div class="col-sm-4"></div>
 </div>
 <div class="row" style="position: relative;top: 80px;height: 200px;">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-        <form action="/loginapi">
+        <form action="/loginsubmit">
+          <div class="formbody">
             <div class="form-group">
               <label>登录名:</label>
               <input type="text" class="form-control" name="userid">
@@ -31,18 +41,10 @@
             <button type="submit" class="btn btn-success">登录</button>
             
           </form>
-          <button class="btn btn-success" style="position: absolute;left: 100px;top: 172px;" onclick="btnclick()" >注册</button>
+          <button type="button" class="btn btn-success" style="position: absolute;left: 100px;top: 192px;" onclick="btnclick()" >注册</button>
     </div>
+  </div>
     <div class="col-sm-4"></div>
 </div>
-<script>
-  function btnclick() {
-    window.location.href = '/register'
-  }
-  let button=document.querySelectorAll('button')
-  button.addEventListener('touchend',()=>{
-    btnclick()
-  })
-</script>
 </body>
 </html>

@@ -3,8 +3,13 @@ const multer =require('multer')
 
 let storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-      if(req.url='/reqgisterapi'){
+      console.log(req.url);
+      console.log('****');
+      if(req.url ==='/registersubmit'){
         cb(null,'./assets/imgs/potrait')
+      }
+      else if(req.url === '/blogsubmit'){
+        cb(null,'./assets/imgs/blogimgs')
       }
     },
     filename:(req,file,cb)=>{
