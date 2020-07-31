@@ -1,0 +1,209 @@
+body{
+    margin: 0;
+    background-color: #e1e1e1;
+  }
+  .navigator{
+    width: 100%;
+    height: 50px;
+    background-color: #444444;
+    position: relative;
+  }
+  .icon{
+    height: 28.2px;
+    width: 120px;
+    position: absolute;
+    background-image: url('/assets/imgs/icons/cnodejs_light.svg');
+    background-size: 120px 28.2px;
+    left: 55px;
+    top: 8px;
+  }
+  #search{
+    height: 26px;
+    width: 233px;
+    padding: 3px 5px 3px 22px;
+    color: #666;
+    border: 0;
+    margin-top: 2px;
+    transition: all .5s;
+    border-radius: 26px;
+    position: absolute;
+    left: 213px;
+    top: 10px;
+    background-color: #888;
+    box-sizing: border-box;
+  }
+  #search:focus{
+    background-color: white;
+    outline: none;
+  }
+  .loginbtn{
+    font-size: 13px;
+    color: #ccc;
+    float: right;
+    margin-right: 14px;
+    margin-top: 17px;
+  }
+  .loginbtn:hover{
+    color: white;
+    text-decoration: none;
+  }
+  .info{
+      height: 89px;
+      width: 100%;
+      position: relative;
+      background-color: white;
+      border-radius: 6px 6px 0 0;
+      padding: 10px;
+      box-sizing: border-box;
+  }
+  .typenormal{
+    padding: 2px 4px 2px 4px;
+    background-color: #e5e5e5;
+    color: #999;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  .typelight{
+padding: 2px 4px 2px 4px;
+    background-color: #80bd01;;
+    color: #fff;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    top: calc(30% - 10px);
+    box-sizing: border-box;
+  }
+  .title{
+    font-size: 22px;
+    font-weight: 700;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+    top: 5%;
+  }
+  ul{
+      clear: both;
+      position: relative;
+      top: 13px;
+      left: -20px;
+  }
+  li{
+      float: left;
+      margin-right: 20px;
+      font-size: 12px;
+    color: #838383;
+  }
+  .support{
+      width: 20px;
+      height: 20px;
+      background-image: url('/assets/imgs/icons/support_default.png');
+      background-size: 20px 20px;
+      float:right;
+      cursor: pointer;
+  }
+  .content{
+      width: 100%;
+      padding: 10px;
+      margin-top: 1px;
+      background-color: white;
+      border-radius: 0 0 6px 6px;
+      box-sizing: border-box;
+  }
+  .comment{
+      width: 100%;
+
+  }
+  .commenthead{
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      background-color: #f6f6f6;
+      border-radius: 6px 6px 0 0;
+      box-sizing: border-box;
+
+  }
+  .commentitem{
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: white;
+  }
+  .clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:left;
+    visibility:hidden;
+}
+  .portrait{
+      width: 30px;
+      height: 83px;
+      float: left;
+      display: block;
+  }
+  img{
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+      float: left;
+  }
+  .commentbody{
+      width: calc(100% - 30px);
+      float: left;
+      padding-left: 10px;
+      
+  }
+  .newreply{
+      height: 24px;
+      width: 48px;
+      background-color: #80bd01;
+      float: right;
+      text-align: center;
+      line-height: 24px;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+  }
+  .newreply:hover{
+      background-color: #7bb205;
+      color: #ededed;
+  }
+  .replybox{
+      height: 200px;
+      width: 100%;
+      background-color: white;
+      margin-bottom: 1px;
+      border-radius: 3px;
+      padding: 15px;
+      display: none;
+  }
+  .submit{
+      height: 33px;
+      width: 70px;
+      background-color: #80bd01;
+      float: right;
+      text-align: center;
+      line-height: 33px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 5px;
+      border: 0;
+      outline: none;
+  }
+  .submit:hover{
+    background-color: #7bb205;
+    color: #ededed;
+  }
+  .closereply{
+    float: right;
+    height: 25px;
+    width: 25px;
+    font-size: 25px;
+    margin-top:2px;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
