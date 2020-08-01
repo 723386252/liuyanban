@@ -1,13 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const api = require('../api/blogapi')
-const upload = require('../utils/multer')
+const blogapi = require('../api/blogapi')
+const loginapi = require('../api/loginapi')
+
 
 router.get('/',(req,res)=>{
     // console.log(req.session.userid);
-    res.render('index.html')
+    if(!req.query.tab || req.query.tab=== 'all'){
+        blogapi.getblog('all',results=>{
+            console.log(results);
+            res.render('index.html',{
+                bloginfo:results
+            })
+        })
+        
+    }
+    
 }
 )
+
 
 
 router.get('/release',(req,res)=>{
@@ -21,24 +32,8 @@ router.get('/release',(req,res)=>{
     } catch (error) {
         res.redirect('/login')
     }
-   
 })
 
-router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
-    console.log(req.body);
-    console.log(req.files);
-    if(req.session && req.session.user){
-    //    api.blogsubmit(req.body,results=>{
-    //        res.send('提交成功')
-    //        res.redirect('/?tab = all')
-    //    })
-    }
-        else{
-            res.redirect('/login')
-        }
-        
-    }
-   
-    )
+
 
     module.exports = router

@@ -57,6 +57,7 @@ body{
     height: 50.68px;
     padding: 10px;
     background-color: white;
+    margin-top: 2px;
   }
   .contentitem:hover{
     background-color: transparent;
@@ -64,11 +65,13 @@ body{
   .portrait{
     height: 30px;
     width: 30px;
-    background-size: 30px 30px;
-    background-color: aqua;
     margin: 0 10px;
     float: left;
 
+  }
+  .portraitimg{
+    height: 30px;
+    width: 30px;
   }
   .tab{
     padding: 3px 4px 3px 4px;

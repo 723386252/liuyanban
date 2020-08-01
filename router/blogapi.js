@@ -88,8 +88,8 @@ commentsubmit:function (content,userid,blogid,success) {
         }
     })
  },
- getcomment:function (blogid,success) {
-     let sql = `select * from comments t1,users t2 where t1.comment_userid = t2.userid and t1.comment_blogid = ${{blogid}}`
+ getcomment:function (blogid) {
+     let sql = `select * from comments t1,users t2 where t1.comment_userid = t2.userid`
      connection.query(sql,(error,results)=>{
          if(error){
              console.log(error);

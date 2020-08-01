@@ -31,14 +31,17 @@
         <a href="/?tab=dev" class="tab">客户端测试</a>
         <div class="release" onclick="release()">发表话题</div>
       </div>
+      {{each bloginfo}}
       <div class="contentitem">
-        <div class="portrait" style="background-image: url();"></div>
-        <span class="support">1</span><span class="count">/100</span>
+        <div class="portrait">
+          <img src="{{$value. portrait}}" alt="{{$value.username}}" class="portraitimg">
+        </div>
+        <span class="support">{{$value.collect}}</span><span class="count">/{{$value.view}}</span>
         <div class="typelight" style="font-size: 12px;">置顶</div>
-        <a class="content" href="">少时诵诗书所所所所所</a>
-        <span class="sbumittime">5小时前</span>
-
+        <a class="content" href="/blogdetail?blogid= {{$value.blogid}}">{{$value.blogtitle}}</a>
+        <span class="sbumittime">{{$value.pushtime}}</span>
       </div>
+      {{/each}}
     </div>
     <div class="col-sm-1"></div>
   </div>

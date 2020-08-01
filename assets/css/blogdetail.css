@@ -108,6 +108,12 @@ padding: 2px 4px 2px 4px;
       background-color: white;
       border-radius: 0 0 6px 6px;
       box-sizing: border-box;
+      font-size: 18px;
+  }
+  .text{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
   }
   .comment{
       width: 100%;
@@ -136,13 +142,7 @@ padding: 2px 4px 2px 4px;
     visibility:hidden;
 }
   .portrait{
-      width: 30px;
-      height: 83px;
-      float: left;
-      display: block;
-  }
-  img{
-      width: 30px;
+    width: 30px;
       height: 30px;
       border-radius: 3px;
       float: left;

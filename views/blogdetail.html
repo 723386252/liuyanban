@@ -24,16 +24,21 @@
       <div class="col-sm-8">
       <div class="info">
             <div class="typelight" style="font-size: 12px;">置顶</div>
-            <div class="title">好几年刻录机断开连接</div>
+            <div class="title">{{blogdetail.blogtitle}}</div>
             <ul>
-                <li>一个月前</li>
-                <li>作者</li>
-                <li>浏览量</li>
+                <li>发布于&nbsp;{{blogdetail.pushtime}}</li>
+                <li>作者&nbsp;{{blogdetail.username}}</li>
+                <li>{{blogdetail.view}}&nbsp;次浏览</li>
             </ul>
-            <div class="support"></div><span style="float: right;font-size: 15px;color: #838383;">1</span>
+            <div class="support"></div><span style="float: right;font-size: 15px;color: #838383;">{{blogdetail.collect}}</span>
       </div>
       <div class="content">
-          奥术大师大所多撒多
+          <div class="text">
+          {{blogdetail.blogcontent}}
+        </div>
+          {{each imgs}}
+          <img src="{{$value.imgurl}}" alt="" style="display: block; float:none;max-width: 100%;height: auto;">
+          {{/each}}
       </div>
     </div>
       <div class="col-sm-2"></div>
@@ -50,15 +55,16 @@
             <div class="replybox">
                 <form action="">
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="comment" style="max-height: 130px;" placeholder="请输入回复内容"></textarea>
+                    <textarea name="commentcontent" class="form-control" rows="5" id="comment" style="max-height: 130px;" placeholder="请输入回复内容"></textarea>
+                    <input type="text" name="blogid" value="{{blogdetail.blogid}}" style="display: none;">
                     <input type="submit" class="submit">
                     <div class="closereply" onclick="closereply()">×</div>
                 </form>
                   </div>
             </div>
             <div class="commentitem clearfix">
-                <a href="" class="portrait">
-                    <img src="../assets/imgs/potrait/default_M.jpg" alt="头像">
+                <a href="">
+                    <img class="portrait" src="../assets/imgs/potrait/default_M.jpg" alt="头像">
                 </a>
                 <div class="commentbody" >
                     <div>
