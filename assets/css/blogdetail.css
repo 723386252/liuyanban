@@ -148,7 +148,7 @@ padding: 2px 4px 2px 4px;
       float: left;
   }
   .commentbody{
-      width: calc(100% - 30px);
+      width: calc(100% - 88px);
       float: left;
       padding-left: 10px;
       
@@ -206,4 +206,17 @@ padding: 2px 4px 2px 4px;
     margin-right: 10px;
     cursor: pointer;
     user-select: none;
+  }
+  .delete{
+    height: 24px;
+    width: 48px;
+    background-color: red;
+    float: right;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 24px;
   }

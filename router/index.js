@@ -8,7 +8,7 @@ router.get('/',(req,res)=>{
     // console.log(req.session.userid);
     if(!req.query.tab || req.query.tab=== 'all'){
         blogapi.getblog('all',results=>{
-            console.log(results);
+            // console.log(results);
             res.render('index.html',{
                 bloginfo:results
             })

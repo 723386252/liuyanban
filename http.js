@@ -28,7 +28,7 @@ app.use('/module/',express.static('./node_modules'))
 app.use('/assets/',express.static('./assets'))
  
 
-const server = app.listen(3000 ,()=>{
+const server = app.listen(80 ,()=>{
   console.log("启动成功");
 })
 

@@ -51,31 +51,35 @@
                     <span style="color: #444;font-size: 14px;word-break: break-word;">8回复</span>
                     <div class="newreply" onclick="newreply()">回复</div>
                 </div>
-            </div>
-            <div class="replybox">
-                <form action="">
+            <!-- <div class="replybox">
+                <form action="commentsubmit" method="POST">
                 <div class="form-group">
                     <textarea name="commentcontent" class="form-control" rows="5" id="comment" style="max-height: 130px;" placeholder="请输入回复内容"></textarea>
                     <input type="text" name="blogid" value="{{blogdetail.blogid}}" style="display: none;">
                     <input type="submit" class="submit">
                     <div class="closereply" onclick="closereply()">×</div>
                 </form>
-                  </div>
-            </div>
+                  </div> -->
+                  {{each comment}}
             <div class="commentitem clearfix">
                 <a href="">
-                    <img class="portrait" src="../assets/imgs/potrait/default_M.jpg" alt="头像">
+                    <img class="portrait" src="{{$value.portrait}}" alt="头像">
                 </a>
                 <div class="commentbody" >
                     <div>
-                        <span style="font-size: 12px;font-weight: 700;color: #666;text-decoration: none;">标题</span>
-                        <span style="font-size: 11px;text-decoration: none;color: #666;">一楼</span>
-                        <span style="font-size: 11px;text-decoration: none;color: #666;">一个月前</span>
+                        <span style="font-size: 12px;font-weight: 700;color: #666;text-decoration: none;">{{$value.username}}</span>
+                        <span style="font-size: 11px;text-decoration: none;color: #666;">{{$index}}</span>
+                        <span style="font-size: 11px;text-decoration: none;color: #666;">{{$value.comment_time}}</span>
                     </div>
                     <div>
-                        <p>sad铝合金奥斯卡来得及奥斯卡达拉斯就得看拉三季度卡拉三等奖撒枯鲁杜鹃奥斯卡来得及啊圣诞快乐</p>
+                        <p>{{$value.comment_content}}</p>
                     </div>
                 </div>
+                <div class="delete" style="display: {{$value.userid === user ? 'block' : 'none'}}">删除</div>
+            </div>
+            {{/each}}
+            </div>
+            
             </div>
         </div>
         <div class="col-sm-2"></div>
