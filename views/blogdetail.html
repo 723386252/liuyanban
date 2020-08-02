@@ -48,10 +48,10 @@
         <div class="col-sm-8">
             <div class="comment">
                 <div class="commenthead">
-                    <span style="color: #444;font-size: 14px;word-break: break-word;">8回复</span>
+                    <span style="color: #444;font-size: 14px;word-break: break-word;">{{total_comment.total}}回复</span>
                     <div class="newreply" onclick="newreply()">回复</div>
                 </div>
-            <!-- <div class="replybox">
+            <div class="replybox">
                 <form action="commentsubmit" method="POST">
                 <div class="form-group">
                     <textarea name="commentcontent" class="form-control" rows="5" id="comment" style="max-height: 130px;" placeholder="请输入回复内容"></textarea>
@@ -59,7 +59,8 @@
                     <input type="submit" class="submit">
                     <div class="closereply" onclick="closereply()">×</div>
                 </form>
-                  </div> -->
+                  </div>
+                </div>
                   {{each comment}}
             <div class="commentitem clearfix">
                 <a href="">
@@ -83,5 +84,6 @@
             </div>
         </div>
         <div class="col-sm-2"></div>
+        
 </body>
 </html>

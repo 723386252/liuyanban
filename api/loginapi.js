@@ -1,34 +1,30 @@
-const connection = require('../utils/mysql')
+const pool = require('../utils/mysql')
 
 let api = {
     loginsubmit: function (userid, password, success) {
-        connection.query(`select username from users where exists (select * from users where userid='${userid}' and password = '${password}')`, (error, results) => {
+        pool.query(`select username from users where exists (select * from users where userid='${userid}' and password = '${password}')`, (error, results) => {
+            success(error,results)
             if (error) {
                 console.log(error);
 
-            } else {
-                success(results)
             }
         })
     },
 
     registersubmit: function (userid, username, password, sex, portrait, success) {
-        connection.query(`INSERT INTO users(userid,username,password ,sex,portrait) VALUES ('${userid}','${username}','${password}','${sex}','${portrait}')`, (error, results) => {
+        pool.query(`INSERT INTO users(userid,username,password ,sex,portrait) VALUES ('${userid}','${username}','${password}','${sex}','${portrait}')`, (error, results) => {
+            success(error,results)
             if (error) {
                 console.log(error);
-            } else {
-                success(results)
-            }
+            } 
         })
     },
     getuserinfo:function (userid,success) {
         let sql = `select * from users where userid = '${userid}'`
-        connection.query(sql , (error,results)=>{
+        pool.query(sql , (error,results)=>{
+            success(error,results)
             if(error){
                 console.log(error);
-            }
-            else{
-                success(results)
             }
         })
     }

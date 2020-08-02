@@ -1,20 +1,25 @@
 const express = require('express')
 const router = express.Router()
 const blogapi = require('../api/blogapi')
-const loginapi = require('../api/loginapi')
+// const loginapi = require('../api/loginapi')
 
 
 router.get('/',(req,res)=>{
     // console.log(req.session.userid);
-    if(!req.query.tab || req.query.tab=== 'all'){
-        blogapi.getblog('all',results=>{
-            // console.log(results);
+    // console.log('首页');
+    if(!req.query.tab || !req.query.page){
+        req.query.tab = 'all'
+        req.query.page= 1
+    }
+        blogapi.getblog(req.query.tab,req.query.page,(error,results)=>{
+            // console.log(results[1][0].total);
             res.render('index.html',{
-                bloginfo:results
+                bloginfo:results[0],
+                tab:req.query.tab,
+                total:results[1][0].total,
+                page:req.query.page
             })
         })
-        
-    }
     
 }
 )

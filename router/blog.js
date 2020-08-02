@@ -2,20 +2,28 @@ const express = require('express')
 const router = express.Router()
 const upload = require('../utils/multer')
 const blogapi = require('../api/blogapi')
+const commentapi = require('../api/comment')
 
 router.get('/blogdetail',(req,res)=>{
     // console.log(req.query.blogid);
     Promise.all([
         new Promise((resolve,reject)=>{
-            blogapi.getblogdetail(req.query.blogid,(blogdetail,imgs)=>{
+            blogapi.getblogdetail(req.query.blogid,(error,blogdetail,imgs)=>{
                 // console.log(blogdetail);
                 // console.log(imgs);
+                if(error){
+                    res.redirect('/blogdetail?blogid='+req.query.blogid)
+                }
                 resolve({blogdetail,imgs})
                 
             })
         }),
         new Promise((resolve,reject)=>{
-            blogapi.getcomment(req.query.blogid,results=>{
+            commentapi.getcomment(req.query.blogid,(error,results)=>{
+                // console.log(results);
+                if(error){
+                    // res.redirect('/blogdetail?blogid='+req.query.blogid)
+                }
                 resolve(results)
                 
             })
@@ -32,7 +40,8 @@ router.get('/blogdetail',(req,res)=>{
         res.render('blogdetail.html',{
             blogdetail:results[0].blogdetail[0],
             imgs:results[0].imgs,
-            comment:results[1],
+            comment:results[1][0],
+            total_comment:results[1][1][0],
             user
             })
     }
@@ -41,6 +50,7 @@ router.get('/blogdetail',(req,res)=>{
 
 
 router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
+    
     if(req.session && req.session.user){
         let userid = req.session.user.userid
         let {title,content,type} = req.body
@@ -48,8 +58,12 @@ router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
         req.files.forEach(item=>{
             imgurl.push(`${item.destination.split('.')[1]}/${item.filename}`)
         })
-        blogapi.blogsubmit(userid,title,content,type,imgurl,results=>{
+        blogapi.blogsubmit(userid,title,content,type,imgurl,(error,results)=>{
+            if(error){
+                res.redirect('/?tab = all')
+            }else{
            res.redirect('/?tab = all')
+            }
        })
     }
         else{
@@ -62,8 +76,13 @@ router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
 router.post('/commentsubmit',(req,res)=>{
     console.log(req.body.blogid);
         if(req.session && req.session.user){
-            blogapi.commentsubmit(req.body.commentcontent,req.session.user.userid,req.body.blogid,results=>{
+            commentapi.commentsubmit(req.body.commentcontent,req.session.user.userid,req.body.blogid,(error,results)=>{
+                if(error){
+                    res.redirect('/blogdetail?blogid='+req.body.blogid)
+                }
+                else{
                 res.redirect('/blogdetail?blogid='+req.body.blogid)
+                }
             })
         }
         else{

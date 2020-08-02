@@ -9,6 +9,8 @@
   <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="stylesheet" href="/assets/layui/css/layui.css">
+  <script src="/assets/layui/layui.js"></script>
   <script src="/assets/js/index.js" type="text/javascript"></script>
 </head>
 <body>
@@ -42,13 +44,30 @@
         <span class="sbumittime">{{$value.pushtime}}</span>
       </div>
       {{/each}}
+      <div id="demo2-2"></div>
     </div>
     <div class="col-sm-1"></div>
   </div>
 
-<script>
+  <script>
+    layui.use(['laypage', 'layer'], function(){
+let laypage = layui.laypage
+let layer = layui.layer;
+laypage.render({
+elem: 'demo2-2',
+count: {{total}},
+limit:10,
+theme: '#80bd01',
+curr: {{page}} //获取起始页
+  ,
+jump: function(obj, first){
+console.log(obj.curr-1);
 
+if(!first){
+  window.location.href = '/?tab={{tab}}&page='+obj.curr
+    }
+}
+})})
 </script>
-
 </body>
 </html>
