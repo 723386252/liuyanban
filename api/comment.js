@@ -20,6 +20,15 @@ const api = {
                  console.log(error);
              }
          })
-       }
+       },
+deletecomment:function (commentid,req,success){
+    let sql = `delete from comments where commentid = '${commentid}' and comment_userid = '${req.session.user.userid}'`
+    pool.query(sql,(error,results)=>{
+        success(error,results)
+        if(error){
+            console.log(error);
+        }
+    })
+}
 }
 module.exports = api

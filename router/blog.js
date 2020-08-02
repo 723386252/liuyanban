@@ -12,7 +12,7 @@ router.get('/blogdetail',(req,res)=>{
                 // console.log(blogdetail);
                 // console.log(imgs);
                 if(error){
-                    res.redirect('/blogdetail?blogid='+req.query.blogid)
+                    reject(error)
                 }
                 resolve({blogdetail,imgs})
                 
@@ -23,6 +23,7 @@ router.get('/blogdetail',(req,res)=>{
                 // console.log(results);
                 if(error){
                     // res.redirect('/blogdetail?blogid='+req.query.blogid)
+                    reject(error)
                 }
                 resolve(results)
                 
@@ -45,7 +46,10 @@ router.get('/blogdetail',(req,res)=>{
             user
             })
     }
-    )
+    ).catch(reject=>{
+        console.log(reject);
+        res.redirect('/?tab=all')
+    })
 })
 
 
@@ -88,6 +92,21 @@ router.post('/commentsubmit',(req,res)=>{
         else{
             res.redirect('/login')
         }
-    })
+    }),
+router.get('/commentdelete',(req,res)=>{
+    if(req.session && req.session.user){
+        commentapi.deletecomment(req.query.commentid,req,(error,results)=>{
+            if(error){
+                res.send({success:0,error_code:101})
+            }
+            else{
+                res.send({success:1,error_code:0})
+            }
+        })
+    }else{
+        res.send({success:0,error_code:100})
+    }
+        
+})
 
 module.exports = router

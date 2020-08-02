@@ -32,7 +32,6 @@ const server = app.listen(80 ,()=>{
   console.log("启动成功");
 })
 
-// let msg=[]
 app.engine('html',require('express-art-template'))
 
 server.setTimeout(0)

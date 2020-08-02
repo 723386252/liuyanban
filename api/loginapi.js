@@ -6,7 +6,6 @@ let api = {
             success(error,results)
             if (error) {
                 console.log(error);
-
             }
         })
     },
