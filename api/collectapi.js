@@ -2,7 +2,7 @@ const pool = require('../utils/mysql');
 
 const api = {
 addcollect:function (blogid,userid,collect,success) {
-    let sql = `insert into collect(blogid,userid) values (${blogid},'${userid}');update blog set collect = ${collect+1} where blogid = ${blogid}`
+    let sql = `insert into collect(blogid,userid) values (${blogid},'${userid}');update blog set collect = ${parseInt(collect)+1} where blogid = ${blogid}`
     // console.log(sql);
     pool.query(sql,(error,results)=>{
         success(error,results)

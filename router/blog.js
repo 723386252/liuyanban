@@ -31,7 +31,7 @@ router.get('/blogdetail',(req,res)=>{
             })
         })
     ]).then(results=>{
-        // console.log(results[0].blogdetail[0]);
+        console.log(results);
         blogapi.addblogview(results[0].blogdetail[0].blogid,results[0].blogdetail[0].view+1,(error,results)=>{
             return
         })
@@ -40,16 +40,18 @@ router.get('/blogdetail',(req,res)=>{
         user = req.session.user
         collectapi.iscollect(results[0].blogdetail[0].blogid,req.session.user.userid,(error_1,results_1)=>{
             if(!error_1){
+                let iscollect = false
                 if(results_1.length !== 0 && results_1[0].iscollect === 1){
-                   res.render('blogdetail.html',{
-                    blogdetail:results[0].blogdetail[0],
-                    imgs:results[0].imgs,
-                    comment:results[1][0],
-                    total_comment:results[1][1][0],
-                    user,
-                    iscollect:true
-            })
+                   iscollect = true
                 }
+                    res.render('blogdetail.html',{
+                        blogdetail:results[0].blogdetail[0],
+                        imgs:results[0].imgs,
+                        comment:results[1][0],
+                        total_comment:results[1][1][0],
+                        user,
+                        iscollect
+                })
             }
         })
         }
@@ -65,7 +67,6 @@ router.get('/blogdetail',(req,res)=>{
         }
     }
     ).catch(reject=>{
-        console.log(reject);
         res.redirect('/?tab=all')
     })
 })
