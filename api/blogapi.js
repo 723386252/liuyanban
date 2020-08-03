@@ -36,7 +36,7 @@ blogsubmit :function (bloguserid,blogtitle,blogcontent,blogtype,imgurl,success) 
 },
 getblog:function(blogtype,page,success){
     if(blogtype !== 'all'){
-    let sql = `select * from blog t1,users t2 where t1.blogtype = '${blogtype}' and t1.bloguserid = t2.userid limit ${(page-1) * 10},10;
+    let sql = `select * from blog t1,users t2 ,blogtype t3 where t1.blogtype = '${blogtype}' and t1.bloguserid = t2.userid and t1.blogtype = t3.blogtype limit ${(page-1) * 10},10;
                select count(*) as total from blog;`
     pool.query(sql,(error,results)=>{
         success(error,results)
@@ -45,7 +45,7 @@ getblog:function(blogtype,page,success){
         }
     })}
     else{
-    let sql = `select * from blog t1,users t2 where t1.bloguserid = t2.userid limit ${(page-1) * 10},10;
+    let sql = `select * from blog t1,users t2,blogtype t3 where t1.bloguserid = t2.userid and t1.blogtype = t3.blogtype limit ${(page-1) * 10},10;
                select count(*) as total from blog;`
     pool.query(sql,(error,results)=>{
         success(error,results)

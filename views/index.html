@@ -29,50 +29,24 @@
     <div class="col-sm-10" style="background-color: #f6f6f6; border-radius: 5px;padding: 0;">
       <div class="headnavigator">
         <div class="tabbox">
-        <a href="/?tab=all" class="tab" id="">全部</a>
-        <a href="/?tab=good" class="tab">精华</a>
-        <a href="/?tab=share" class="tab">分享</a>
-        <a href="/?tab=ask" class="tab">问答</a>
-        <a href="/?tab=job" class="tab">招聘</a>
-        <a href="/?tab=dev" class="tab">客户端测试</a>
+        <div class=" tab focustab" id="tab" onclick="tabchange('all',0)">全部</div>
+        <div class="tab" id="tab" onclick="tabchange('good',1)">精华</div>
+        <div class="tab" id="tab" onclick="tabchange('share',2)">分享</div>
+        <div class="tab" id="tab" onclick="tabchange('ask',3)">问答</div>
+        <div class="tab" id="tab" onclick="tabchange('job',4)">招聘</div>
+        <div class="tab" id="tab"s onclick="tabchange('dev',5)">客户端测试</div>
       </div>
         <div class="release" onclick="release()">发表话题</div>
       </div>
-      {{each bloginfo}}
-      <div class="contentitem">
-        <div class="portrait">
-          <img src="{{$value. portrait}}" alt="{{$value.username}}" class="portraitimg">
-        </div>
-        <span class="support">{{$value.collect}}</span><span class="count">/{{$value.view}}</span>
-        <div class="typelight" style="font-size: 12px;">置顶</div>
-        <a class="content" href="/blogdetail?blogid= {{$value.blogid}}">{{$value.blogtitle}}</a>
-        <span class="sbumittime">{{$value.pushtime}}</span>
-      </div>
-      {{/each}}
+      <div id="blogbox">
+    </div>
       <div id="demo2-2" style="text-align: center"></div>
     </div>
     <div class="col-sm-1"></div>
   </div>
 
   <script>
-    layui.use(['laypage', 'layer'], function(){
-let laypage = layui.laypage
-let layer = layui.layer;
-laypage.render({
-elem: 'demo2-2',
-count: {{total}},
-limit:10,
-theme: '#80bd01',
-curr: {{page}} //获取起始页
-  ,
-jump: function(obj, first){
-console.log(obj.curr-1);
-
-if(!first){
-  window.location.href = '/?tab={{tab}}&page='+obj.curr
-    }
-}
-})})
+    
 </script>
 </body>
 </html>

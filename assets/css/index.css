@@ -87,16 +87,33 @@ body{
     float: left;
     font-size: 14px;
     color: #80bd01;
+    cursor: pointer;
+    user-select: none;
+  }
+  .focustab{
+    padding: 3px 4px 3px 4px;
+    margin: 0 10px 0 10px;
+    float: left;
+    font-size: 14px;
+    background-color: #80bd01;
+    color: #fff;
+    border-radius: 3px;
+    user-select: none;
+    cursor: pointer;
   }
   .typenormal{
     padding: 2px 4px 2px 4px;
     background-color: #e5e5e5;
     color: #999;
     border-radius: 3px;
+    float: left;
+    position: relative;
+    top: calc(50% - 11px);
+    margin-left: 10px;
   }
   .typelight{
-padding: 2px 4px 2px 4px;
-    background-color: #80bd01;;
+    padding: 2px 4px 2px 4px;
+    background-color: #80bd01;
     color: #fff;
     border-radius: 3px;
     float: left;
