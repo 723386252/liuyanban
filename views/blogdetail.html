@@ -16,9 +16,8 @@
     <div class="navigator">
         <div class="icon"></div>
         <input type="text" name="search" id="search">
-    
-        <a class="loginbtn" href='/login'  style="display:{{user === null? 'block':'none'}}">登录</a>
         <a class="loginbtn" href='/register'  style="display:{{user === null? 'block':'none'}}">注册</a>
+        <a class="loginbtn" href='/login'  style="display:{{user === null? 'block':'none'}}">登录</a>
         <a class="loginbtn" href='/loginout'  style="display:{{user === null? 'none':'block'}}">退出</a>
         <a class="loginbtn" href='' style="display:{{user === null? 'none':'block'}}">{{user === null? '':user.username}}</a>
 

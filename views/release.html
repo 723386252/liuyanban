@@ -17,8 +17,9 @@
     <div class="icon"></div>
     <input type="text" name="search" id="search">
 
-    <a class="loginbtn" href='/register'>注册</a>
-    <a class="loginbtn" href='/login'>登录</a>
+    <a class="loginbtn" href='/loginout'  style="display:{{user === null? 'none':'block'}}">退出</a>
+    <a class="loginbtn" href='' style="display:{{user === null? 'none':'block'}}">{{user === null? '':user.username}}</a>
+
   </div>
     <div class="row" style="height: 70px;position: relative;">
         <div class="col-sm-3"></div>
