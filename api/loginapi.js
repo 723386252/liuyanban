@@ -2,7 +2,9 @@ const pool = require('../utils/mysql')
 
 let api = {
     loginsubmit: function (userid, password, success) {
-        pool.query(`select username from users where exists (select * from users where userid='${userid}' and password = '${password}')`, (error, results) => {
+        let sql = `select username from users where password = '${password}' and userid = '${userid}'`
+        // console.log(sql);
+        pool.query(sql, (error, results) => {
             success(error,results)
             if (error) {
                 console.log(error);

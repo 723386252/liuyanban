@@ -23,7 +23,7 @@ router.get('/login',(req,res)=>{
 router.post('/registersubmit',uploadcheck,(req,res)=>{
     // console.log(req.file);
     // console.log(req.body);
-    console.log('注册');
+    // console.log('注册');
             let {userid , username , password , sex } = req.body
     if(req.file){
     portrait = `${req.file.destination.split('.')[1]}/${req.file.filename}`
@@ -51,7 +51,7 @@ router.get('/loginsubmit',(req,res)=>{
     let {userid,password} = req.query
     api.loginsubmit(userid , password, (error,results) =>{
         // console.log(results);
-        if(error){
+        if(error || results.length ===0){
             res.redirect('/login')
         }
         else{
@@ -60,6 +60,13 @@ router.get('/loginsubmit',(req,res)=>{
         }
     })
     
+})
+
+router.get('/loginout',(req,res)=>{
+    if(typeof(req.session.user) !== "undefined" && req.user !== null){
+    req.session.user = null
+    }
+    res.redirect('/?tab=all')
 })
 
 module.exports = router

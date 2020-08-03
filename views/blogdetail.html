@@ -17,8 +17,11 @@
         <div class="icon"></div>
         <input type="text" name="search" id="search">
     
-        <a class="loginbtn" href='/register'>注册</a>
-        <a class="loginbtn" href='/login'>登录</a>
+        <a class="loginbtn" href='/login'  style="display:{{user === null? 'block':'none'}}">登录</a>
+        <a class="loginbtn" href='/register'  style="display:{{user === null? 'block':'none'}}">注册</a>
+        <a class="loginbtn" href='/loginout'  style="display:{{user === null? 'none':'block'}}">退出</a>
+        <a class="loginbtn" href='' style="display:{{user === null? 'none':'block'}}">{{user === null? '':user.username}}</a>
+
       </div>
       <div class="row" style="margin-top: 20px;">
       <div class="col-sm-2"></div>
@@ -31,7 +34,7 @@
                 <li>作者&nbsp;{{blogdetail.username}}</li>
                 <li>{{blogdetail.view}}&nbsp;次浏览</li>
             </ul>
-            <div class="support"></div><span style="float: right;font-size: 15px;color: #838383;">{{blogdetail.collect}}</span>
+            <div class="support" onclick="support()"><img class='supportimg' src={{ iscollect === true ? '/assets/imgs/icons/support_light.png':'/assets/imgs/icons/support_default.png'}} alt=""></div><span style="float: right;font-size: 15px;color: #838383;" id="collect">{{blogdetail.collect}}</span>
       </div>
       <div class="content">
           <div class="text">
@@ -77,7 +80,7 @@
                         <p>{{$value.comment_content}}</p>
                     </div>
                 </div>
-                <div class="delete" style="display: {{$value.userid === user ? 'block' : 'none'}}" data-commentid="{{$value.commentid}}" onclick="deletecomment(event)">删除</div>
+                <div class="delete" style="display: {{user && $value.userid === user.userid ? 'block' : 'none'}}" data-commentid="{{$value.commentid}}" onclick="deletecomment(event)">删除</div>
             </div>
             {{/each}}
             </div>

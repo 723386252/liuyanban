@@ -96,10 +96,13 @@ padding: 2px 4px 2px 4px;
   .support{
       width: 20px;
       height: 20px;
-      background-image: url('/assets/imgs/icons/support_default.png');
-      background-size: 20px 20px;
       float:right;
       cursor: pointer;
+  }
+  .supportimg{
+    width: 20px;
+      height: 20px;
+      display: block;
   }
   .content{
       width: 100%;

@@ -18,19 +18,24 @@
     <div class="icon"></div>
     <input type="text" name="search" id="search">
 
-    <a class="loginbtn" href='/register'>注册</a>
-    <a class="loginbtn" href='/login'>登录</a>
+    <a class="loginbtn" href='/login'  style="display:{{user === null? 'block':'none'}}">登录</a>
+    <a class="loginbtn" href='/register'  style="display:{{user === null? 'block':'none'}}">注册</a>
+    <a class="loginbtn" href=''  style="display:{{user === null? 'none':'block'}}">退出</a>
+    <a class="loginbtn" href='' style="display:{{user === null? 'none':'block'}}">{{user}}</a>
+
   </div>
   <div class="row" style="margin-top: 20px;">
     <div class="col-sm-1"></div>
     <div class="col-sm-10" style="background-color: #f6f6f6; border-radius: 5px;padding: 0;">
       <div class="headnavigator">
+        <div class="tabbox">
         <a href="/?tab=all" class="tab" id="">全部</a>
         <a href="/?tab=good" class="tab">精华</a>
         <a href="/?tab=share" class="tab">分享</a>
         <a href="/?tab=ask" class="tab">问答</a>
         <a href="/?tab=job" class="tab">招聘</a>
         <a href="/?tab=dev" class="tab">客户端测试</a>
+      </div>
         <div class="release" onclick="release()">发表话题</div>
       </div>
       {{each bloginfo}}
@@ -44,7 +49,7 @@
         <span class="sbumittime">{{$value.pushtime}}</span>
       </div>
       {{/each}}
-      <div id="demo2-2"></div>
+      <div id="demo2-2" style="text-align: center"></div>
     </div>
     <div class="col-sm-1"></div>
   </div>

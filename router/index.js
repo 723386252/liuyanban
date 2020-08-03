@@ -13,11 +13,17 @@ router.get('/',(req,res)=>{
     }
         blogapi.getblog(req.query.tab,req.query.page,(error,results)=>{
             // console.log(results[1][0].total);
+            let user = null
+            // console.log(res.session);
+            if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
+                user = req.session.user.username
+            }
             res.render('index.html',{
                 bloginfo:results[0],
                 tab:req.query.tab,
                 total:results[1][0].total,
-                page:req.query.page
+                page:req.query.page,
+                user
             })
         })
     
@@ -29,7 +35,7 @@ router.get('/',(req,res)=>{
 router.get('/release',(req,res)=>{
     // console.log(req.session.userid);
     try {
-         if(req.session && req.session.user){
+         if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
     res.render('release.html')}
     else{
         res.redirect('/login')

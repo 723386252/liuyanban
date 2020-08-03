@@ -73,7 +73,16 @@ getblogdetail:function (blogid,success){
             })
         }
     }
-    )}
+    )},
+addblogview:function (blogid,view,success) {
+    let sql = `update blog set view = ${view} where blogid = ${blogid}`
+    pool.query(sql,(error,results)=>{
+        success(error,results)
+        if(error){
+            console.log(error);
+        }
+    })
+}
 
 }
 

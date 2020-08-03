@@ -3,6 +3,7 @@ const router = express.Router()
 const upload = require('../utils/multer')
 const blogapi = require('../api/blogapi')
 const commentapi = require('../api/comment')
+const collectapi =require('../api/collectapi')
 
 router.get('/blogdetail',(req,res)=>{
     // console.log(req.query.blogid);
@@ -30,21 +31,38 @@ router.get('/blogdetail',(req,res)=>{
             })
         })
     ]).then(results=>{
-        // console.log(results[1]);
+        // console.log(results[0].blogdetail[0]);
+        blogapi.addblogview(results[0].blogdetail[0].blogid,results[0].blogdetail[0].view+1,(error,results)=>{
+            return
+        })
         let user = null
-        if(req.session && req.session.user){
-        user = req.session.user.userid
+        if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
+        user = req.session.user
+        collectapi.iscollect(results[0].blogdetail[0].blogid,req.session.user.userid,(error_1,results_1)=>{
+            if(!error_1){
+                if(results_1.length !== 0 && results_1[0].iscollect === 1){
+                   res.render('blogdetail.html',{
+                    blogdetail:results[0].blogdetail[0],
+                    imgs:results[0].imgs,
+                    comment:results[1][0],
+                    total_comment:results[1][1][0],
+                    user,
+                    iscollect:true
+            })
+                }
+            }
+        })
         }
         else{
-        user = ''
-        }
         res.render('blogdetail.html',{
             blogdetail:results[0].blogdetail[0],
             imgs:results[0].imgs,
             comment:results[1][0],
             total_comment:results[1][1][0],
-            user
+            user,
+            iscollect:false
             })
+        }
     }
     ).catch(reject=>{
         console.log(reject);
@@ -54,8 +72,7 @@ router.get('/blogdetail',(req,res)=>{
 
 
 router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
-    
-    if(req.session && req.session.user){
+    if(typeof(req.session.user) !== "undefined" && req.session.user.userid){
         let userid = req.session.user.userid
         let {title,content,type} = req.body
         let imgurl = []
@@ -79,7 +96,7 @@ router.post('/blogsubmit',upload.array('imgs'),(req,res)=>{
     )
 router.post('/commentsubmit',(req,res)=>{
     console.log(req.body.blogid);
-        if(req.session && req.session.user){
+        if(typeof(req.session.user) !== "undefined" && req.session.user.userid){
             commentapi.commentsubmit(req.body.commentcontent,req.session.user.userid,req.body.blogid,(error,results)=>{
                 if(error){
                     res.redirect('/blogdetail?blogid='+req.body.blogid)
@@ -94,7 +111,7 @@ router.post('/commentsubmit',(req,res)=>{
         }
     }),
 router.get('/commentdelete',(req,res)=>{
-    if(req.session && req.session.user){
+    if(typeof(req.session.user) !== "undefined" && req.session.user.userid){
         commentapi.deletecomment(req.query.commentid,req,(error,results)=>{
             if(error){
                 res.send({success:0,error_code:101})
@@ -108,5 +125,6 @@ router.get('/commentdelete',(req,res)=>{
     }
         
 })
+
 
 module.exports = router
