@@ -15,7 +15,7 @@ body{
     background-image: url('/assets/imgs/icons/cnodejs_light.svg');
     background-size: 120px 28.2px;
     float: left;
-    margin-left: 55px;
+    margin-left: 4%;
     margin-top: 8px;
   }
   #search{
@@ -29,10 +29,9 @@ body{
     border-radius: 26px;
     position: relative;
     float: left;
-    margin-left: 38px;
+    margin-left: 2%;
     margin-top: 10px;
     background-color: #888;
-    margin-left: calc();
   }
   #search:focus{
     background-color: white;
@@ -55,7 +54,7 @@ body{
     margin: 10px;
   }
   .tabbox{
-    width: calc(100% - 104px);
+    width: calc(100% - 114px);
     float: left;
     position: relative;
   }
@@ -83,7 +82,7 @@ body{
   }
   .tab{
     padding: 3px 4px 3px 4px;
-    margin: 0 10px 0 10px;
+    margin: 0 0.38% 0 0.38%;
     float: left;
     font-size: 14px;
     color: #80bd01;
@@ -92,7 +91,7 @@ body{
   }
   .focustab{
     padding: 3px 4px 3px 4px;
-    margin: 0 10px 0 10px;
+    margin: 0 0.38% 0 0.38%;
     float: left;
     font-size: 14px;
     background-color: #80bd01;
@@ -159,13 +158,17 @@ body{
     cursor: pointer;
     border: none;
     display: block;
-    float: left;
+    float: right;
     border-radius: 3px;
     background-color: #80bd01;
     padding:6px 10px;
-
+    margin-right: 20px;
   }
   .release:hover{
     background-color: #7bb205;
     color: #ededed;
   }
+ #blogbox{
+   width: 100%;
+   position: relative;
+ }
