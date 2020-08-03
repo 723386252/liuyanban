@@ -39,7 +39,7 @@ router.get('/iscollect',(req,res)=>{
 })
 router.get('/addcollect',(req,res)=>{
     if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
-        collectapi.addcollect(req.query.blogid,req.session.user.userid,req.query.collect,(error,results)=>{
+        collectapi.addcollect(req.query.blogid,req.session.user.userid,(error,results)=>{
             if(error){
                 res.send({
                     success:0,
