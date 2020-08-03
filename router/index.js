@@ -7,7 +7,7 @@ const blogapi = require('../api/blogapi')
 router.get('/',(req,res)=>{
             let user = null
             if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
-                user = req.session.user.username
+                user = req.session.user
             }
             res.render('index.html',{
                 user
@@ -30,6 +30,7 @@ router.get('/getbloglist',(req,res)=>{
                 tab:req.query.tab,
                 total:results[1][0].total,
                 page:req.query.page
+
             })
         }
     })
@@ -38,8 +39,12 @@ router.get('/getbloglist',(req,res)=>{
 router.get('/release',(req,res)=>{
     // console.log(req.session.userid);
     try {
+        let user = null
          if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
-    res.render('release.html')}
+            user = req.session.user
+            res.render('release.html',{
+                user
+            })}
     else{
         res.redirect('/login')
     }
