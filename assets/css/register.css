@@ -33,11 +33,12 @@ body{
   .icon{
     height: 28.2px;
     width: 120px;
-    position: absolute;
+    position: relative;
     background-image: url('/assets/imgs/icons/cnodejs_light.svg');
     background-size: 120px 28.2px;
-    left: 55px;
-    top: 8px;
+    float: left;
+    margin-left: 4%;
+    margin-top: 8px;
   }
   #search{
     height: 26px;
@@ -48,9 +49,10 @@ body{
     margin-top: 2px;
     transition: all .5s;
     border-radius: 26px;
-    position: absolute;
-    left: 213px;
-    top: 10px;
+    position: relative;
+    float: left;
+    margin-left: 2%;
+    margin-top: 10px;
     background-color: #888;
   }
   #search:focus{
@@ -74,4 +76,9 @@ body{
     height:0;
     clear:left;
     visibility:hidden;
+}
+@media screen and (max-width :480px){
+  .icon{
+    display: none;
+  }
 }
