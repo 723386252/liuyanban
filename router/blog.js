@@ -31,7 +31,6 @@ router.get('/blogdetail',(req,res)=>{
             })
         })
     ]).then(results=>{
-        console.log(results);
         blogapi.addblogview(results[0].blogdetail[0].blogid,results[0].blogdetail[0].view+1,(error,results)=>{
             return
         })
