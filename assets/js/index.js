@@ -45,7 +45,7 @@ let type = 'all'
             </div>
             <span class="support">${item.collect}</span><span class="count">/${item.view}</span>
             <div class="${item.top === 1? 'typelight': 'typenormal'}" style="font-size: 12px;">${item.type_chinese}</div>
-            <a class="content" href="/blogdetail?blogid= ${item.blogid}">${item.blogtitle}</a>
+            <a class="content" href="/blogdetail?blogid=${item.blogid}">${item.blogtitle}</a>
             <span class="sbumittime">${item.pushtime}</span>
           </div>`);
           })

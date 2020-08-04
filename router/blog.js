@@ -6,48 +6,31 @@ const commentapi = require('../api/comment')
 const collectapi =require('../api/collectapi')
 
 router.get('/blogdetail',(req,res)=>{
-    // console.log(req.query.blogid);
-    Promise.all([
         new Promise((resolve,reject)=>{
             blogapi.getblogdetail(req.query.blogid,(error,blogdetail,imgs)=>{
-                // console.log(blogdetail);
-                // console.log(imgs);
                 if(error){
                     reject(error)
                 }
                 resolve({blogdetail,imgs})
                 
             })
-        }),
-        new Promise((resolve,reject)=>{
-            commentapi.getcomment(req.query.blogid,(error,results)=>{
-                // console.log(results);
-                if(error){
-                    // res.redirect('/blogdetail?blogid='+req.query.blogid)
-                    reject(error)
-                }
-                resolve(results)
-                
-            })
-        })
-    ]).then(results=>{
-        blogapi.addblogview(results[0].blogdetail[0].blogid,results[0].blogdetail[0].view+1,(error,results)=>{
+        }).then(results=>{
+            // console.log(results);
+        blogapi.addblogview(results.blogdetail[0].blogid,results.blogdetail[0].view+1,(error,results)=>{
             return
         })
         let user = null
         if(typeof(req.session.user) !== "undefined" && req.session.user !== null){
         user = req.session.user
-        collectapi.iscollect(results[0].blogdetail[0].blogid,req.session.user.userid,(error_1,results_1)=>{
+        collectapi.iscollect(results.blogdetail[0].blogid,req.session.user.userid,(error_1,results_1)=>{
             if(!error_1){
                 let iscollect = false
                 if(results_1.length !== 0 && results_1[0].iscollect === 1){
                    iscollect = true
                 }
                     res.render('blogdetail.html',{
-                        blogdetail:results[0].blogdetail[0],
-                        imgs:results[0].imgs,
-                        comment:results[1][0],
-                        total_comment:results[1][1][0],
+                        blogdetail:results.blogdetail[0],
+                        imgs:results.imgs,
                         user,
                         iscollect
                 })
@@ -56,16 +39,15 @@ router.get('/blogdetail',(req,res)=>{
         }
         else{
         res.render('blogdetail.html',{
-            blogdetail:results[0].blogdetail[0],
-            imgs:results[0].imgs,
-            comment:results[1][0],
-            total_comment:results[1][1][0],
+            blogdetail:results.blogdetail[0],
+            imgs:results.imgs[0],
             user,
             iscollect:false
             })
         }
     }
     ).catch(reject=>{
+        console.log(reject);
         res.redirect('/?tab=all')
     })
 })

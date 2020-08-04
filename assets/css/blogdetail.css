@@ -86,7 +86,13 @@ padding: 2px 4px 2px 4px;
       clear: both;
       position: relative;
       top: 13px;
-      left: -20px;
+  }
+  ul:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:left;
+    visibility:hidden;
   }
   li{
       float: left;
@@ -121,13 +127,13 @@ padding: 2px 4px 2px 4px;
   }
   .comment{
       width: 100%;
+      background-color: #f6f6f6;
 
   }
   .commenthead{
       width: 100%;
       height: 40px;
       padding: 10px;
-      background-color: #f6f6f6;
       border-radius: 6px 6px 0 0;
       box-sizing: border-box;
 
@@ -137,6 +143,7 @@ padding: 2px 4px 2px 4px;
       padding: 10px;
       box-sizing: border-box;
       background-color: white;
+      margin-top: 1px;
   }
   .clearfix:after{
     content:"";
@@ -150,6 +157,10 @@ padding: 2px 4px 2px 4px;
       height: 30px;
       border-radius: 3px;
       float: left;
+  }
+  .portraitbox{
+    height: 35px;
+    float: left;
   }
   .commentbody{
       width: calc(100% - 88px);
